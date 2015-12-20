@@ -1,0 +1,7 @@
+.DS_Store
+angular.min.js
+bower_components
+angular
+angular-route
+angularfire
+firebase

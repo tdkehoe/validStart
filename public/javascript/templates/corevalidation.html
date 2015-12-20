@@ -1,0 +1,19 @@
+<!-- Core Validation -->
+<span>Project Name</span><span>{{ project.userName | json}}</span>
+<br />
+<span>Add New</span><span>Target Customer</span>
+
+<form ng-submit="addTargetCustomer(targetCustomer)" name="newTargetCustomer">
+
+  <label for="definition">Definition: </label>
+  <input type="text" name="definition" size="100" ng-model="targetCustomer.definition" placeholder="Briefly describe your customers' qualities (e.g., spendthrift mobile gamer)"/>
+<br />
+  <label for="creatorName"></label>
+  <input type="checkbox" name="knowsCustomer" value="false" ng-model="targetCustomer.knowsCustomer" /> Do you know anyone in this customer base?<br />
+
+  <input type="submit" value="Add Target Customer"></input>
+</form>
+
+<br />
+
+<a href="/#/"><button>Return to Home Page</button></a>

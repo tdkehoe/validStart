@@ -1,0 +1,9 @@
+<form ng-submit="updateIdea(update)">
+  <label for="editApplicant">Edit Applicant Name: </label>
+    <input type="text" name="editApplicant" ng-model="update.creatorName" placeholder="{{ myIdea.creatorName | json }}"></label><br>
+  <label for="editIdea">Edit Idea: </label>
+    <input type="text" name="editIdea" ng-model="update.ideaTitle" placeholder="{{ myIdea.ideaTitle | json }}"></label><br>
+  <input type="submit" value="Update Idea"></input>
+</form>
+
+<a href="/#/"><button>Return to Home Page</button></a>

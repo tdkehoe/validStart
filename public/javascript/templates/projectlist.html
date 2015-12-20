@@ -1,0 +1,17 @@
+<!-- Project List -->
+<div ng-repeat="project in projects">
+  <a ng-href="/#/{{project.$id}}/corevalidation"><span>{{project.projectName}}</span></a>
+  <span>{{project.score}}</span>
+    <span>{{project.definitions}}</span>
+    <span>{{project.market}}</span>
+    <span>{{project.team}}</span>
+    <span>{{project.plan}}</span>
+    <button ng-click="shareProject(project)">Sharing</button>
+  <button ng-click="deleteProject(project)">Delete</button>
+  <button ng-click="reportProject(project)">Report</button>
+  <br />
+</div>
+
+<a href="/#/new"><button>Add a new project</button></a>
+
+<!-- needs to show that data is loading -->

@@ -1,0 +1,42 @@
+<table>
+<tr><td style="font-style: italic">Applicant Name:</td><td>{{ myIdea.creatorName | json }}</td></tr>
+<tr><td style="font-style: italic">Idea Title:</td><td>{{ myIdea.ideaTitle | json }}</td></tr>
+<tr><td><a href="#/{{myIdea.$id}}/edit"><button>Edit Idea</button></a></td></tr>
+</table>
+
+<!-- <button ng-click="showIdea.likes = showIdea.likes + 1">Like</button> -->
+<span>Likes: {{myIdea.likes}}</span>
+<form ng-submit="upLike(showIdea)">
+  <input type="submit" value="Up"></input>
+</form>
+<form ng-submit="downLike(showIdea)">
+  <input type="submit" value="Down"></input>
+</form>
+
+<div ng-repeat="comment in myIdea.comments">
+  <span>{{comment.commentText}}</span>
+  <span>--{{comment.commentAuthor}}</span>
+  <span>
+  <form ng-submit="deleteComment(myIdea, comment)">
+    <input type="submit" value="Delete Comment" />
+  </form>
+</span>
+</div>
+
+<form ng-submit="addComment(newComment)">
+  <label for="commentText">Your Comment: </label>
+  <input type="text" name="commentText" ng-model="newComment.commentText">
+  <label for="commentAuthor">Your Name: </label>
+  <input type="text" name="commentAuthor" ng-model="newComment.commentAuthor">
+  <input type="submit" value="Add Comment"></input>
+</form>
+
+<div>
+  <select ng-model="scale" ng-change="setScale(scale)">
+    <option value="agree">agreement</option>
+    <option value="level">low to high</option>
+    <option value="number">number scale</option>
+  </select>
+</div>
+
+<a href="/#/"><button>Return to Home Page</button></a>
