@@ -1,18 +1,21 @@
 app.controller('HomeController', ['$scope', '$firebaseArray', '$firebaseAuth', '$location',
 function($scope, $firebaseArray, $firebaseAuth, $location) {
-  console.log("ProjectListController.");
-  // set up Firebase
+  console.log("HomeController.");
+
   var ref = new Firebase("https://validstart.firebaseio.com/");
-  $scope.projects = $firebaseArray(ref);
-  // var auth = $firebaseAuth(ref);
+  var auth = $firebaseAuth(ref);
 
-  // needs to show that data is loading
+  $scope.login = function() {
+    $scope.authData = null;
+    $scope.error = null;
 
-  $scope.deleteProject = function(project) { // DESTROY
-    console.log("Deleting project.");
-    $scope.projects.$remove(project).then(function() {
-      console.log("Project deleted.")
+    auth.$authAnonymously().then(function(authData) {
+      $scope.authData = authData;
+      console.log(authData);
+    }).catch(function(error) {
+      $scope.error = error;
+      console.log(error);
     });
-  };
+  }; // close login()
 
 }]);

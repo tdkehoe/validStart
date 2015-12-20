@@ -1,14 +1,27 @@
-<p>validStart logo</p>
+<div ng-controller="HomeController">
+  <div ng-show="authData">
+    <p>Hello, {{ authData.facebook.displayName }}</p>
+    <button ng-click="auth$unauth()">Logout</button>
+  </div>
 
-<p>Register New User</p>
-<form ng-submit="addName()" name="userName">
+  <div ng-hide="authData">
+    <p>Welcome, please log in.</p>
+    <button ng-click="auth.$authWithOAuthPopup('facebook')">Login With Facebook</button>
+    <button ng-click="login()">Login Anonymously</button>
+    <p ng-if="authData">Logged in user: <strong>{{ authData.uid }}</strong></p>
+    <p ng-if="error">Error: <strong>{{ error }}</strong></p>
+  </div>
+</div>
 
-  <label for="userName">Your Name: </label>
-  <input type="text" name="userName" ng-model="project.userName" />
+<!-- <a href="/#/projectlist"><button>Login To Your Account</button></a> -->
 
-  <input type="submit" value="Register"></input>
-</form>
+<a href="/#/userMgmt"><button>Manage Users</button></a>
 
-<a href="/#/projectlist"><button>Log Into Your Account</button></a> <!-- Login To Your Account? -->
-
-<p>Video</p>
+<!-- Facebook like button
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
+ -->
