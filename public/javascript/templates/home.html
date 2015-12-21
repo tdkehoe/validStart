@@ -5,7 +5,8 @@
     <br />
     <a href="/#/userMgmt"><button>Manage Users</button></a>
     <br />
-    <button ng-click="auth$unauth()">Logout</button> <!-- need to write this method -->
+    {{ authData.name || "Anonymous User"}} <a href="#"><button ng-click="auth$unauth()">Logout</button></a> <!-- need to write this method -->
+
   </div>
 
   <div ng-hide="authData">
