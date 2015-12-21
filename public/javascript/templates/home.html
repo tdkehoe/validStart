@@ -1,12 +1,16 @@
 <div ng-controller="HomeController">
   <div ng-show="authData">
     <p>Hello, {{ authData.facebook.displayName }}</p>
-    <button ng-click="auth$unauth()">Logout</button>
+    <a href="/#/projectlist"><button>Go to your project list</button></a>
+    <br />
+    <a href="/#/userMgmt"><button>Manage Users</button></a>
+    <br />
+    <button ng-click="auth$unauth()">Logout</button> <!-- need to write this method -->
   </div>
 
   <div ng-hide="authData">
     <p>Welcome, please log in.</p>
-    <button ng-click="auth.$authWithOAuthPopup('facebook')">Login With Facebook</button>
+    <!-- <button ng-click="auth.$authWithOAuthPopup('facebook')">Login With Facebook</button> -->
     <button ng-click="login()">Login Anonymously</button>
     <p ng-if="authData">Logged in user: <strong>{{ authData.uid }}</strong></p>
     <p ng-if="error">Error: <strong>{{ error }}</strong></p>
@@ -15,13 +19,13 @@
 
 <!-- <a href="/#/projectlist"><button>Login To Your Account</button></a> -->
 
-<a href="/#/userMgmt"><button>Manage Users</button></a>
+
 
 <!-- Facebook like button
 <div
-  class="fb-like"
-  data-share="true"
-  data-width="450"
-  data-show-faces="true">
+class="fb-like"
+data-share="true"
+data-width="450"
+data-show-faces="true">
 </div>
- -->
+-->

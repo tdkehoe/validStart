@@ -13,15 +13,7 @@ app.config(["$routeProvider", function($routeProvider) {
   .when('/home', { // login page
     templateUrl: 'javascript/templates/home.html',
     controller: 'HomeController',
-    title: 'ValidStart',
-    // resolve: {
-    //   // controller will not be loaded until $waitForAuth resolves
-    //   // Auth refers to our $firebaseAuth wrapper in the example above
-    //   "currentAuth": ["Auth"], function(Auth) {
-    //     // $waitForAuth returns a promise so the resolve waits for it to complete
-    //     return Auth.$waitForAuth();
-    //   }
-    // } // close resolve
+    title: 'ValidStart'
   })
   // .when('/account', { // user's account page
   //   templateUrl: 'javascript/templates/account.html',
@@ -50,7 +42,15 @@ app.config(["$routeProvider", function($routeProvider) {
   .when('/projectlist', { // must be above '/:id' otherwise it'll think that the ID is 'new'
     templateUrl: 'javascript/templates/projectlist.html', // NEW
     controller: 'ProjectListController',
-    title: 'Project List'
+    title: 'Project List',
+    // resolve: {
+    //   // controller will not be loaded until $waitForAuth resolves
+    //   // Auth refers to our $firebaseAuth wrapper in the example above
+    //   "currentAuth": ["Auth"], function(Auth) {
+    //     // $waitForAuth returns a promise so the resolve waits for it to complete
+    //     return Auth.$waitForAuth();
+    //   }
+    // } // close resolve
   })
   .when('/:id/corevalidation', { // must be above '/:id' otherwise it'll think that the ID is 'new'
     templateUrl: 'javascript/templates/corevalidation.html', // NEW
