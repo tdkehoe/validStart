@@ -23,14 +23,7 @@ function($scope, $firebaseArray, $firebaseAuth, $location, Auth) {
       var project = {
         creatorName:  authData.github.displayName,
         projectName: $scope.project.projectName,
-        likes: 0,
-        targetCustomer1: {
-          targetCustomerDefinition: "No response.",
-          isCustomer: "No response.",
-          knowsCustomer: "No response.",
-          targetCustomerText: "No response.",
-          targetCustomerValue: "No response."
-        },
+        likes: 0
       };
       $scope.projects.$add(project).then(function(ref){
         var id = ref.key();

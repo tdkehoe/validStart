@@ -7,68 +7,51 @@
 
 <div>Target Customer</div>
 
+<div>
+  <label for="targetCustomerDefinition">Target customer definition: </label>
+  <input type="text" name="targetCustomerDefinition" size="100" ng-model="project.targetCustomer1.targetCustomerDefinition" placeholder="Briefly..."/>
+</div>
+
+<div>
+  <label for="isCustomer">Are you a target customer? </label><br />
+  <input type="radio" name="isCustomer" ng-model="project.targetCustomer1.isCustomer" ng-value="true">
+  Yes, I would use this product.
+  <br />
+  <input type="radio" name="isCustomer" ng-model="project.targetCustomer1.isCustomer" ng-value="false">
+  No, I'm not a target customer.
+  <br />
+  <span ng-hide="project.targetCustomer1.isCustomer"><input type="checkbox" name="knowsCustomer" value="false" ng-model="project.targetCustomer1.knowsCustomer" /> Do you know anyone in this customer base?</span></input>
+</div>
+
+<br /><br />
+
+<div ng-show="project.targetCustomer1.targetCustomerDefinition">
+  <label for="doTheyPay">Do they pay: </label>
+  <input type="text" name="doTheyPay" size="100" ng-model="project.targetCustomer1.doTheyPayText" placeholder="placeholder"/>
+  <br />
+  <input type="radio" name="doTheyPay5" ng-model="project.targetCustomer1.doTheyPayValue" ng-value=5>
+  More than the rent on a San Francisco apartment!
+  <br />
+  <input type="radio" name="doTheyPay4" ng-model="project.targetCustomer1.doTheyPayValue" ng-value=4>
+  More than the rent on an Omaha apartment.
+  <br />
+  <input type="radio" name="doTheyPay3" ng-model="project.targetCustomer1.doTheyPayValue" ng-value=3>
+  Yes, about what they pay to fill up their Subarus.
+  <br />
+  <input type="radio" name="doTheyPay2" ng-model="project.targetCustomer1.doTheyPayValue" ng-value=2>
+  Yes, but no more than they'd pay for a coffee at Starbucks.
+  <br />
+  <input type="radio" name="doTheyPay1" ng-model="project.targetCustomer1.doTheyPayValue" ng-value=1>
+  Look in a Whole Foods dumpster, they throw out cases of it every night.
+</div>
+
+
+
+
 <form ng-submit="defineTargetCustomer(targetCustomer)" name="newTargetCustomer">
-
   <div>
-    <label for="targetCustomerDefinition">Target customer definition: </label>
-    <input type="text" name=targetCustomerDefinition" size="100" ng-model="project.targetCustomerDefinition" placeholder="Briefly describe your customers' qualities (e.g., spendthrift mobile gamer)"/>
-  </div>
-
-  <div>
-    <label for="isCustomer">Are you a target customer? </label><br />
-    <input type="radio" name="isCustomer" ng-model="targetCustomer.isCustomer" ng-value="true">
-    Yes, I would use this product.
-    <br />
-    <input type="radio" name="isCustomer" ng-model="targetCustomer.isCustomer" ng-value="false">
-    No, I'm not a target customer.
-    <br />
-    <tt>Is customer = {{ targetCustomer.isCustomer }}</tt><br/>
-    <span ng-hide="targetCustomer.isCustomer"><input type="checkbox" name="knowsCustomer" value="false" ng-model="targetCustomer.knowsCustomer" /> Do you know anyone in this customer base?</span></input>
-  </div>
-
-  <div>
-    <input type="submit" value="Add Target Customer"></input>
+    <input type="submit" value="Add Another Target Customer"></input>
   </div>
 </form>
-
-<br /><br />
-
-<form ng-submit="doTheyPay(doTheyPaydata)" name="newTargetCustomer">
-
-  <div>
-    <label for="doTheyPay">Do they pay: </label>
-    <input type="text" name=doTheyPay" size="100" ng-model="project.targetCustomers.doTheyPayText" placeholder="Does this group pay for equivalent services or products?"/>
-  </div>
-
-  <div>
-    <input type="radio" name="doTheyPay5" ng-model="doTheyPay.doTheyPayValue" ng-value=5>
-    More than the rent on a San Francisco apartment!
-    <br />
-    <input type="radio" name="doTheyPay4" ng-model="doTheyPay.doTheyPayValue" ng-value=4>
-    More than the rent on an Omaha apartment.
-    <br />
-    <input type="radio" name="doTheyPay3" ng-model="doTheyPay.doTheyPayValue" ng-value=3>
-    Yes, about what they pay to fill up their Subarus.
-    <br />
-    <input type="radio" name="doTheyPay2" ng-model="doTheyPay.doTheyPayValue" ng-value=2>
-    Yes, but no more than they'd pay for a coffee at Starbucks.
-    <br />
-    <input type="radio" name="doTheyPay1" ng-model="doTheyPay.doTheyPayValue" ng-value=1>
-    Look in a Whole Foods dumpster, they throw out cases of it every night.
-    <br />
-    <input type="radio" name="doTheyPayNR" ng-model="doTheyPay.doTheyPayValue" ng-value="noResponse">
-    No response.
-    <br />
-    <tt>Do they pay (text) = {{ project.targetCustomers.doTheyPayText }}</tt><br/>
-    <tt>Do they pay (value) = {{ doTheyPay.doTheyPayValue }}</tt><br/>
-  </div>
-
-  <div>
-    <input type="submit" value="Do They Pay?"></input>
-  </div>
-</form>
-
-
-<br /><br />
 
 <a href="/#/"><button>Return to Home Page</button></a>

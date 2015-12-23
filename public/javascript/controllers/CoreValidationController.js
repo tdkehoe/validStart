@@ -7,13 +7,6 @@ function($scope, $firebaseObject) {
   var itemRef = ref.child(newKey[0]); // locates the child element by the $id
   var project = $firebaseObject(itemRef); // gets the object from Firebase
   project.$bindTo($scope, "project").then(function() {
-    console.log(project);
-    $scope.project.targetCustomerDefinition = "No response.";
-
-
-    // $scope.true = true;
-    // $scope.false = false;
-    // project.targetCustomer.isCustomer = false;
 
     $scope.defineTargetCustomer = function(newTargetCustomer){ // NEW
       console.log("Adding target customer.");
