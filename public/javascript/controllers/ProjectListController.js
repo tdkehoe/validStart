@@ -1,6 +1,6 @@
 app.controller('ProjectListController', ['$scope', '$firebaseArray', '$firebaseAuth', '$location',
 function($scope, $firebaseArray, $firebaseAuth, $location) {
-  console.log("NewController.");
+  console.log("ProjectListController.");
   // set up Firebase
   var ref = new Firebase("https://validstart.firebaseio.com/");
   $scope.projects = $firebaseArray(ref);

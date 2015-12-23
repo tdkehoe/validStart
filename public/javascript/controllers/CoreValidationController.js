@@ -8,13 +8,14 @@ function($scope, $firebaseObject) {
   var project = $firebaseObject(itemRef); // gets the object from Firebase
   project.$bindTo($scope, "project").then(function() {
     console.log(project);
+    $scope.project.targetCustomerDefinition = "No response.";
 
 
     // $scope.true = true;
     // $scope.false = false;
     // project.targetCustomer.isCustomer = false;
 
-    $scope.addTargetCustomer = function(newTargetCustomer){ // NEW
+    $scope.defineTargetCustomer = function(newTargetCustomer){ // NEW
       console.log("Adding target customer.");
       console.log(newTargetCustomer);
       console.log(newTargetCustomer.definition);
@@ -23,7 +24,8 @@ function($scope, $firebaseObject) {
       var targetCustomer = {
         definition: newTargetCustomer.definition,
         isCustomer: newTargetCustomer.isCustomer,
-        knowsCustomer: newTargetCustomer.knowsCustomer
+        knowsCustomer: newTargetCustomer.knowsCustomer,
+        doTheyPayText: "Not answered."
       };
       if (!$scope.project.targetCustomers) { // if there are no comments
         var targetCustomers = [];
@@ -39,7 +41,20 @@ function($scope, $firebaseObject) {
       } else { // if comments array already exists
         $scope.project.targetCustomers.push(targetCustomer);
       }
-    }; // close addComment
+    }; // close defineTargetCustomer
+
+    $scope.doTheyPay = function(doTheyPaydata){ // NEW
+      console.log("Adding payment answer.");
+      console.log(doTheyPaydata);
+      // console.log(doTheyPaydata);
+      // console.log(doTheyPaydata.doTheyPayText);
+      // console.log(doTheyPaydata.doTheyPayValue);
+      // var doTheyPay = {
+      //   doTheyPayText: doTheyPay.doTheyPayText,
+      //   doTheyPayValue: doTheyPay.doTheyPayValue,
+      // };
+      // $scope.project.targetCustomers.push(doTheyPay);
+    }; // close doTheyPay
 
     $scope.deleteTargetCustomer = function(project, targetCustomer) { // DESTROY
       var index = project.targetCustomers.indexOf(targetCustomer);

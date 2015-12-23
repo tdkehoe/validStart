@@ -1,12 +1,15 @@
 <!-- Core Validation -->
+<p>Your Name: {{ authData.facebook.displayName }} {{ authData.github.displayName }}</p>
+
+
 <form ng-submit="addProject()" name="newProject">
 
-  <label for="creatorName">Your Name: </label>
-  <input type="text" name="creatorName" ng-model="project.creatorName" />
+
+
 
   <label for="projectName">Your Project Name: </label>
   <input type="text" name="projectName" ng-model="project.projectName" />
-  
+
   <input type="submit" value="Add Project"></input>
 </form>
 

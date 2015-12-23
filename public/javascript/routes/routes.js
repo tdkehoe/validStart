@@ -45,7 +45,13 @@ app.config(["$routeProvider", function($routeProvider) {
 .when('/new', { // must be above '/:id' otherwise it'll think that the ID is 'new'
 templateUrl: 'javascript/templates/new.html', // NEW
 controller: 'NewController',
-title: 'Add New Project'
+title: 'Add New Project',
+resolve: {
+  "currentAuth": ["Auth", function(Auth) {
+    console.log("Resolving authorization.");
+    return Auth.$requireAuth();
+    }] // close "currentAuth"
+  } // close resolve
 })
 .when('/projectlist', { // must be above '/:id' otherwise it'll think that the ID is 'new'
 templateUrl: 'javascript/templates/projectlist.html', // NEW
@@ -68,9 +74,10 @@ controller: 'CoreValidationController',
 title: 'Core Validation',
 resolve: {
   "currentAuth": ["Auth", function(Auth) {
+    console.log("Resolving authorization.");
     return Auth.$requireAuth();
-  }] // close "currentAuth"
-} // close resolve
+    }] // close "currentAuth"
+  } // close resolve
 })
 .when('/:id/edit', { // UPDATE
   templateUrl: 'javascript/templates/edit.html',
