@@ -1,22 +1,51 @@
-app.controller('HomeController', ['$scope', '$firebaseArray', '$firebaseAuth', '$location',
-function($scope, $firebaseArray, $firebaseAuth, $location) {
+app.controller('HomeController', ['$scope', '$firebaseArray', '$firebaseAuth', '$location', 'Auth',
+function($scope, $firebaseArray, $firebaseAuth, $location, Auth) {
   console.log("HomeController.");
 
-  var ref = new Firebase("https://validstart.firebaseio.com/");
-  var auth = $firebaseAuth(ref);
+  // Detect user state
+  Auth.$onAuth(function(authData) {
+    $scope.authData = authData;
+    console.log(authData);
+    if (!authData) {
+      console.log("Logged out for sure!");
+    } else {
+      console.log("Still logged in.");
+    }
+  })
 
-  $scope.login = function() {
+  $scope.loginAnon = function() {
     console.log("Logging in.");
-    $scope.authData = null;
-    $scope.error = null;
-    auth.$authAnonymously().then(function(authData) {
-      console.log("Authorizing.")
-      $scope.authData = authData;
-      console.log(authData);
-    }).catch(function(error) {
-      $scope.error = error;
-      console.log(error);
+    // $scope.authData = null;
+    // $scope.error = null;
+    Auth.$authAnonymously()
+    // .then(function(authData) {
+    //   console.log("Authorizing.")
+    //   $scope.authData = authData;
+    //   console.log(authData);
+    // })
+    .catch(function(error) {
+      // $scope.error = error;
+      console.error(error);
     });
-  }; // close login()
+  }; // close loginAnon()
+
+  $scope.loginGitHub = function() {
+    Auth.$authWithOAuthPopup("github")
+    .catch(function(error) {
+      console.error(error);
+    });
+  };
+
+  $scope.loginFacebook = function() {
+    Auth.$authWithOAuthPopup("facebook")
+    .catch(function(error) {
+      console.error(error);
+    });
+  };
+
+  $scope.logout = function() {
+    Auth.$unauth();
+    console.log("Logged out.");
+  };
 
 }]);

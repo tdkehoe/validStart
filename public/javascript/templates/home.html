@@ -2,20 +2,55 @@
   <div ng-show="authData">
     <p>Hello, {{ authData.facebook.displayName }}</p>
     <a href="/#/projectlist"><button>Go to your project list</button></a>
-    <br />
+    <br /> <br />
     <a href="/#/userMgmt"><button>Manage Users</button></a>
-    <br />
-    {{ authData.name || "Anonymous User"}} <a href="#"><button ng-click="auth$unauth()">Logout</button></a> <!-- need to write this method -->
-
   </div>
 
   <div ng-hide="authData">
     <p>Welcome, please log in.</p>
     <!-- <button ng-click="auth.$authWithOAuthPopup('facebook')">Login With Facebook</button> -->
-    <button ng-click="login()">Login Anonymously</button>
+    <button ng-click="loginAnon()">Login Anonymously</button>
     <p ng-if="authData">Logged in user: <strong>{{ authData.uid }}</strong></p>
     <p ng-if="error">Error: <strong>{{ error }}</strong></p>
   </div>
+</div>
+
+<br />
+
+<!-- <div ng-hide="authData">
+  <button ng-click="loginGitHub()">Login With Email and Password</button>
+</div>
+
+<br /> -->
+
+<div ng-hide="authData">
+  <button ng-click="loginGitHub()">Login With GitHub</button>
+</div>
+
+<br />
+
+<div ng-hide="authData">
+  <button ng-click="loginFacebook()">Login With Facebook</button>
+</div>
+
+<br />
+
+<!-- <div ng-hide="authData">
+  <button ng-click="loginFacebook()">Login With Twitter</button>
+</div>
+
+<br />
+
+<div ng-hide="authData">
+  <button ng-click="loginFacebook()">Login With Google</button>
+</div>
+
+<br /> -->
+
+<div ng-show="authData">
+  <img ng-src="{{ authData.github.cachedUserProfile.avatar_url }}" />
+  <p>{{ authData.github.displayName }}</p>
+  <button ng-click="logout()">Logout</button>
 </div>
 
 <!-- <a href="/#/projectlist"><button>Login To Your Account</button></a> -->
