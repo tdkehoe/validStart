@@ -3,9 +3,16 @@ function($scope, $firebaseObject) {
   console.log("CoreValidationController.");
   var ref = new Firebase("https://validstart.firebaseio.com/"); // connect to Firebase
   var key = location.hash.split('#/')[1]; // parse $id from URL query string
-  var ref = ref.child(key); // locates the child element by the $id
-  var project = $firebaseObject(ref); // gets the object from Firebase
+  var newKey = key.split('/');
+  var itemRef = ref.child(newKey[0]); // locates the child element by the $id
+  var project = $firebaseObject(itemRef); // gets the object from Firebase
   project.$bindTo($scope, "project").then(function() {
+  console.log(project);
+
+
+    // $scope.true = true;
+    // $scope.false = false;
+    // project.targetCustomer.isCustomer = false;
 
     $scope.addTargetCustomer = function(newTargetCustomer){ // NEW
       console.log(newTargetCustomer);

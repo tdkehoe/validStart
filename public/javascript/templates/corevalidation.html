@@ -1,19 +1,35 @@
 <!-- Core Validation -->
-<span>Project Name</span><span>{{ project.userName | json}}</span>
-<br />
-<span>Add New</span><span>Target Customer</span>
+<div>Project Name: {{ project.projectName | json}}</div>
+<div>Created By: {{ project.creatorName | json}}</div>
+<div>Add New</div>
+<div>Target Customer</div>
 
 <form ng-submit="addTargetCustomer(targetCustomer)" name="newTargetCustomer">
 
   <label for="definition">Definition: </label>
   <input type="text" name="definition" size="100" ng-model="targetCustomer.definition" placeholder="Briefly describe your customers' qualities (e.g., spendthrift mobile gamer)"/>
-<br />
+  <br />
   <label for="creatorName"></label>
-  <input type="checkbox" name="knowsCustomer" value="false" ng-model="targetCustomer.knowsCustomer" /> Do you know anyone in this customer base?<br />
+
+  <div>
+    <label for="isCustomer">Are you a target customer? </label><br />
+    <input type="radio" name="isCustomer" ng-model="targetCustomer.isCustomer" ng-value="true">
+    Yes, I would use this product.
+    <br />
+
+    <input type="radio" name="isCustomer" ng-model="targetCustomer.isCustomer" ng-value="false">
+    No, I'm not a target customer.
+    <br />
+    <tt>Is customer = {{ targetCustomer.isCustomer }}</tt><br/>
+
+    <span ng-hide="targetCustomer.isCustomer"><input type="checkbox" name="knowsCustomer" value="false" ng-model="targetCustomer.knowsCustomer" /> Do you know anyone in this customer base?</span></input>
+  </div>
+
+  <br />
 
   <input type="submit" value="Add Target Customer"></input>
 </form>
 
-<br />
+<br /
 
 <a href="/#/"><button>Return to Home Page</button></a>

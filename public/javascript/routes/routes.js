@@ -14,14 +14,14 @@ app.config(["$routeProvider", function($routeProvider) {
     templateUrl: 'javascript/templates/home.html',
     controller: 'HomeController',
     title: 'ValidStart',
-      resolve: {
-        // controller will not be loaded until $waitForAuth resolves
-        // Auth refers to our $firebaseAuth wrapper in the example above
-        "currentAuth": ["Auth", function(Auth) {
-          // $waitForAuth returns a promise so the resolve waits for it to complete
-          return Auth.$waitForAuth();
-        }]
-      }
+    resolve: {
+      // controller will not be loaded until $waitForAuth resolves
+      // Auth refers to our $firebaseAuth wrapper in the example above
+      "currentAuth": ["Auth", function(Auth) {
+        // $waitForAuth returns a promise so the resolve waits for it to complete
+        return Auth.$waitForAuth();
+      }]
+    }
   })
   // .when('/account', { // user's account page
   //   templateUrl: 'javascript/templates/account.html',
@@ -48,24 +48,29 @@ controller: 'NewController',
 title: 'Add New Project'
 })
 .when('/projectlist', { // must be above '/:id' otherwise it'll think that the ID is 'new'
-  templateUrl: 'javascript/templates/projectlist.html', // NEW
-  controller: 'ProjectListController',
-  title: 'Project List',
-  resolve: {
-    // controller will not be loaded until $waitForAuth resolves
-    // Auth refers to our $firebaseAuth wrapper in the example above
-    "currentAuth": ["Auth", function(Auth) {
-      // $requireAuth returns a promise so the resolve waits for it to complete
-      // If the promise is rejected, it will throw a $stateChangeError (see above)
-      console.log("Resolving authorization.");
-      return Auth.$requireAuth();
-    }] // close "currentAuth"
-  } // close resolve
+templateUrl: 'javascript/templates/projectlist.html', // NEW
+controller: 'ProjectListController',
+title: 'Project List',
+resolve: {
+  // controller will not be loaded until $waitForAuth resolves
+  // Auth refers to our $firebaseAuth wrapper in the example above
+  "currentAuth": ["Auth", function(Auth) {
+    // $requireAuth returns a promise so the resolve waits for it to complete
+    // If the promise is rejected, it will throw a $stateChangeError (see above)
+    console.log("Resolving authorization.");
+    return Auth.$requireAuth();
+  }] // close "currentAuth"
+} // close resolve
 })
 .when('/:id/corevalidation', { // must be above '/:id' otherwise it'll think that the ID is 'new'
 templateUrl: 'javascript/templates/corevalidation.html', // NEW
 controller: 'CoreValidationController',
-title: 'Core Validation'
+title: 'Core Validation',
+resolve: {
+  "currentAuth": ["Auth", function(Auth) {
+    return Auth.$requireAuth();
+  }] // close "currentAuth"
+} // close resolve
 })
 .when('/:id/edit', { // UPDATE
   templateUrl: 'javascript/templates/edit.html',
