@@ -2,8 +2,8 @@ app.controller('ShowController', ['$scope', '$firebaseObject',
 function($scope, $firebaseObject) {
   var ref = new Firebase("https://validstart.firebaseio.com/"); // connect to Firebase
   var key = location.hash.split('#/')[1]; // parse $id from URL query string
-  var ref = ref.child(key); // locates the child element by the $id
-  var project = $firebaseObject(ref); // gets the object from Firebase
+  var refKey = ref.child(key); // locates the child element by the $id
+  var project = $firebaseObject(refKey); // gets the object from Firebase
   project.$bindTo($scope, "project").then(function() {
 
     $scope.upLike = function() {

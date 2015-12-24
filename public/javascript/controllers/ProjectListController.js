@@ -1,28 +1,19 @@
-app.controller('ProjectListController', ['$scope', '$firebaseArray', '$firebaseAuth', '$location',
-function($scope, $firebaseArray, $firebaseAuth, $location) {
+app.controller('ProjectListController', ['$scope', '$firebaseArray', '$firebaseAuth', '$firebaseObject', '$location',
+function($scope, $firebaseArray, $firebaseAuth, $firebaseObject, $location) {
   console.log("ProjectListController.");
-  // set up Firebase
+
   var ref = new Firebase("https://validstart.firebaseio.com/");
   $scope.projects = $firebaseArray(ref);
-  // var auth = $firebaseAuth(ref);
 
-  $scope.addIdea = function(){ // NEW
-    console.log("Adding idea.");
-    var idea = {
-      creatorName:  $scope.project.creatorName,
-      projectName: $scope.project.projectName,
-      score: $scope.project.score,
-      definitions: $scope.project.definitions,
-      market: $scope.project.market,
-      team: $scope.project.team,
-      plan: $scope.project.plan,
-      likes: 0,
-      comments: [null]
-    };
-    $scope.projects.$add(project).then(function(ref){
-      var id = ref.key();
-      console.log("added record with id " + id);
-      $location.path( "/" );
+  $scope.deleteProject = function(project) { // DESTROY
+    var key = project.$id; // parse $id from URL query string
+    var refKey = ref.child(key); // locates the child element by the $id
+    var obj = $firebaseObject(refKey); // gets the object from Firebase
+    obj.$remove().then(function(ref) {
+      // data has been deleted locally and in the database
+      console.log("Deleted.");
+    }, function(error) {
+      console.log("Error:", error);
     });
   };
 
