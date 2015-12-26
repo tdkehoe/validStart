@@ -1,33 +1,105 @@
 <!-- Core Validation -->
-<div>Project Name: {{ project.projectName | json}}</div>
-<div>Created By: {{ project.creatorName | json}}</div>
-<div>Add New</div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Valid Start {{ project.projectName}}</a>
+    </div>
 
-<br /><br />
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-center">
+        <li class="active"><a href="#">Definitions</a></li>
+        <li><a href="#">Market</a></li>
+        <li><a href="#">Team/Resources</a></li>
+        <li><a href="#">Initial Plan</a></li>
+      </ul>
+      <span class="navbar-text navbar-right">UserName: {{ project.creatorName }}</span>
+    </div>
+  </div>
+</nav>
 
-<div>Target Customer</div>
+<div class="container">
 
-<div>
-  <label for="targetCustomerDefinition">Target customer definition: </label>
-  <input type="text" name="targetCustomerDefinition" size="100" ng-model="project.targetCustomer1.targetCustomerDefinition" placeholder="Briefly..."/>
-</div>
+  <div class="col-md-3">
 
-<div>
-  <label for="isCustomer">Are you a target customer? </label><br />
-  <input type="radio" name="isCustomer" ng-model="project.targetCustomer1.isCustomer" ng-value="true">
-  Yes, I would use this product.
-  <br />
-  <input type="radio" name="isCustomer" ng-model="project.targetCustomer1.isCustomer" ng-value="false">
-  No, I'm not a target customer.
-  <br />
-  <span ng-hide="project.targetCustomer1.isCustomer"><input type="checkbox" name="knowsCustomer" value="false" ng-model="project.targetCustomer1.knowsCustomer" /> Do you know anyone in this customer base?</span></input>
-</div>
+    <div class="row pull-right">Target Customer:</div>
+    <div>&nbsp;</div>
+    <div class="row pull-right">Customer Problem/Need:</div>
+    <div>&nbsp;</div>
+    <div class="row pull-right">Your Offering:</div>
+    <div>&nbsp;</div>
+    <div class="row pull-right">Key Differentiators:</div>
 
-<br /><br />
+  </div> <!-- col-md-3 -->
 
-<div ng-show="project.targetCustomer1.targetCustomerDefinition">
+  <div class="col-md-6">
+
+    <div class="row">
+      <h1>
+        <button type="button" class="btn btn-primary">Add New&nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span></button>
+        <span class="text-center">Target Customer</span>
+      </h1>
+    </div> <!-- row -->
+
+    <div class="row">
+      <div class="col-md-2">
+        <label for="targetCustomerDefinition">Definition: </label>
+      </div>
+      <div class="col-md-8">
+
+        <form>
+          <div class="form-group">
+            <input class="textInputForm" type="text" name="targetCustomerDefinition" ng-model="project.targetCustomer1.targetCustomerDefinition" placeholder="Briefly..." ng-mouseleave="mouseleaveTargetCustomer = true"/>
+            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true">&nbsp;&nbsp;</span>
+          </div>
+        </form>
+
+      </div>
+      <div class="col-md-2">
+        <span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star">
+      </div>
+    </div> <!-- row -->
+
+
+
+    <div class="row">
+      <div class="col-md-2">
+        <label for="targetCustomerDefinition">Definition: </label>
+      </div>
+      <div class="col-md-8">
+
+        <form>
+          <div class="form-group">
+            <input class="textInputForm" type="text" name="targetCustomerDefinition" ng-model="project.targetCustomer1.targetCustomerDefinition" placeholder="Briefly..." ng-mouseleave="mouseleaveTargetCustomer = true"/>
+            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true">&nbsp;&nbsp;</span>
+          </div>
+        </form>
+
+      </div>
+      <div class="col-md-2">
+        <span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star">
+      </div>
+    </div> <!-- row -->
+
+    <!-- <div>
+    <label for="isCustomer">Are you a target customer? </label><br />
+    <input type="radio" name="isCustomer" ng-model="project.targetCustomer1.isCustomer" ng-value="true">
+    Yes, I would use this product.
+    <br />
+    <input type="radio" name="isCustomer" ng-model="project.targetCustomer1.isCustomer" ng-value="false">
+    No, I'm not a target customer.
+    <br />
+    <span ng-hide="project.targetCustomer1.isCustomer"><input type="checkbox" name="knowsCustomer" value="false" ng-model="project.targetCustomer1.knowsCustomer" /> Do you know anyone in this customer base?</span></input>
+  </div> -->
+
+  <div ng-show="mouseleaveTargetCustomer">
   <label for="doTheyPay">Do they pay: </label>
-  <input type="text" name="doTheyPay" size="100" ng-model="project.targetCustomer1.doTheyPayText" placeholder="placeholder"/>
+  <input type="text" name="doTheyPay" size="100" ng-model="project.targetCustomer1.doTheyPayText" placeholder="Does this group pay for equivalent servcies or products?" ng-mouseleave="mouseleaveDoTheyPay = true"/>
   <br />
   <input type="radio" name="doTheyPay5" ng-model="project.targetCustomer1.doTheyPayValue" ng-value=5>
   More than the rent on a San Francisco apartment!
@@ -45,13 +117,30 @@
   Look in a Whole Foods dumpster, they throw out cases of it every night.
 </div>
 
+<!-- <div ng-show="mouseleaveDoTheyPay">
+<label for="preAdopters">Pre-Adopters: </label>
+<input type="text" name="preAdopters" size="100" ng-model="project.targetCustomer1.preAdoptersText" placeholder="(B2C) Does this group have an early adopter group that you can work with?<br />(B2B) Do you know a customer to partner with in building your MVP?" ng-mouseleave="mouseleaveTargetCustomerDefintion = true"/>
+<br />
+<span ng-hide="project.targetCustomer1.isCustomer"><input type="checkbox" name="knowsCustomer" value="false" ng-model="project.targetCustomer1.knowsCustomer" /> Do you know anyone in this customer base?</span></input>
+</div> -->
 
 
 
-<form ng-submit="defineTargetCustomer(targetCustomer)" name="newTargetCustomer">
-  <div>
-    <input type="submit" value="Add Another Target Customer"></input>
-  </div>
+
+
+
+
+<!-- <form ng-submit="defineTargetCustomer(targetCustomer)" name="newTargetCustomer">
+<div>
+<input type="submit" value="Add Another Target Customer"></input>
+</div>
 </form>
 
-<a href="/#/"><button>Return to Home Page</button></a>
+<a href="/#/"><button>Return to Home Page</button></a> -->
+
+</div> <!-- col-md-6 -->
+
+<div class="col-md-3"></div>
+
+
+</div> <!-- container -->
