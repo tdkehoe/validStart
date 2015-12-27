@@ -1,12 +1,24 @@
 app.controller('CoreValidationController', ['$scope', '$firebaseObject',
 function($scope, $firebaseObject) {
   console.log("CoreValidationController.");
+
   var ref = new Firebase("https://validstart.firebaseio.com/"); // connect to Firebase
   var key = location.hash.split('#/')[1]; // parse $id from URL query string
   var newKey = key.split('/');
   var itemRef = ref.child(newKey[0]); // locates the child element by the $id
   var project = $firebaseObject(itemRef); // gets the object from Firebase
+  
+  console.log(itemRef.child('targetCustomer1').child('targetCustomerDefinition').toString());
+  $firebaseObject(itemRef.child('targetCustomer1').child('targetCustomerDefinition')).$watch(function() {
+    console.log("Saved!"); // logs when the value of one property is changed and saved
+  })
+
   project.$bindTo($scope, "project").then(function() {
+
+    var evaluationScore = 0;
+    var externalEvaluation = 0;
+    console.log(evaluationScore);
+    console.log(externalEvaluation);
 
     $scope.defineTargetCustomer = function(newTargetCustomer){ // NEW
       console.log("Adding target customer.");

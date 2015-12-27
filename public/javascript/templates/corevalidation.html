@@ -29,24 +29,33 @@
 
     <div class="row pull-right">Target Customer:</div>
     <div>&nbsp;</div>
+    <br />
+    <br />
+
     <div class="row pull-right">Customer Problem/Need:</div>
     <div>&nbsp;</div>
+    <br />
+    <br />
+
     <div class="row pull-right">Your Offering:</div>
     <div>&nbsp;</div>
+    <br />
+    <br />
+
     <div class="row pull-right">Key Differentiators:</div>
 
   </div> <!-- col-md-3 -->
 
   <div class="col-md-6">
 
-    <div class="row">
+    <div class="row"> <!-- row 1, "Add New +" -->
       <h1>
         <button type="button" class="btn btn-primary">Add New&nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span></button>
         <span class="text-center">Target Customer</span>
       </h1>
-    </div> <!-- row -->
+    </div> <!-- close row 1 -->
 
-    <div class="row">
+    <div class="row"> <!-- row 2 "Defintion" -->
       <div class="col-md-2">
         <label for="targetCustomerDefinition">Definition: </label>
       </div>
@@ -54,8 +63,8 @@
 
         <form>
           <div class="form-group">
-            <input class="textInputForm" type="text" name="targetCustomerDefinition" ng-model="project.targetCustomer1.targetCustomerDefinition" placeholder="Briefly..." ng-mouseleave="mouseleaveTargetCustomer = true"/>
-            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true">&nbsp;&nbsp;</span>
+            <input type="text" class="textInputForm form-control" rows="2" name="targetCustomerDefinition" ng-model="project.targetCustomer1.targetCustomerDefinition" placeholder="Briefly..." ng-mouseleave="mouseleaveTargetCustomer = true"/> <!-- textarea doesn't work -->
+            <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="saved" aria-hidden="true">&nbsp;&nbsp;</span>
           </div>
         </form>
 
@@ -63,28 +72,28 @@
       <div class="col-md-2">
         <span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star">
       </div>
-    </div> <!-- row -->
+    </div> <!-- close row 2 -->
 
 
 
-    <div class="row">
+    <div class="row"  ng-show="mouseleaveTargetCustomer">  <!-- row 3 "Do They Pay" -->
       <div class="col-md-2">
-        <label for="targetCustomerDefinition">Definition: </label>
+        <label for="doTheyPay">Do they pay: </label>
       </div>
       <div class="col-md-8">
 
         <form>
           <div class="form-group">
-            <input class="textInputForm" type="text" name="targetCustomerDefinition" ng-model="project.targetCustomer1.targetCustomerDefinition" placeholder="Briefly..." ng-mouseleave="mouseleaveTargetCustomer = true"/>
+            <input class="textInputForm" type="text" name="doTheyPay" ng-model="project.targetCustomer1.doTheyPayText" placeholder="Does this group pay for equivalent servcies or products?" ng-mouseleave="mouseleaveDoTheyPay = true"/>
             <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true">&nbsp;&nbsp;</span>
           </div>
         </form>
 
       </div>
       <div class="col-md-2">
-        <span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star">
+
       </div>
-    </div> <!-- row -->
+    </div> <!-- close row 3 -->
 
     <!-- <div>
     <label for="isCustomer">Are you a target customer? </label><br />
@@ -97,7 +106,7 @@
     <span ng-hide="project.targetCustomer1.isCustomer"><input type="checkbox" name="knowsCustomer" value="false" ng-model="project.targetCustomer1.knowsCustomer" /> Do you know anyone in this customer base?</span></input>
   </div> -->
 
-  <div ng-show="mouseleaveTargetCustomer">
+  <!-- <div ng-show="mouseleaveTargetCustomer">
   <label for="doTheyPay">Do they pay: </label>
   <input type="text" name="doTheyPay" size="100" ng-model="project.targetCustomer1.doTheyPayText" placeholder="Does this group pay for equivalent servcies or products?" ng-mouseleave="mouseleaveDoTheyPay = true"/>
   <br />
@@ -115,7 +124,7 @@
   <br />
   <input type="radio" name="doTheyPay1" ng-model="project.targetCustomer1.doTheyPayValue" ng-value=1>
   Look in a Whole Foods dumpster, they throw out cases of it every night.
-</div>
+</div> -->
 
 <!-- <div ng-show="mouseleaveDoTheyPay">
 <label for="preAdopters">Pre-Adopters: </label>
@@ -140,7 +149,29 @@
 
 </div> <!-- col-md-6 -->
 
-<div class="col-md-3"></div>
+<div class="col-md-3">
+
+  <div>
+    Your Evaluation Score<br />
+    {{ project.evaluationScore }}
+  </div>
+
+  <br />
+  <br />
+
+  <div>
+    External Evaluation<br />
+    {{ project.externalEvaluation }}
+  </div>
+
+  <br />
+  <br />
+
+  <div>
+    Create Report
+  </div>
+
+</div>
 
 
 </div> <!-- container -->
