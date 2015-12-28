@@ -7,13 +7,23 @@ function($scope, $firebaseObject) {
   var newKey = key.split('/');
   var itemRef = ref.child(newKey[0]); // locates the child element by the $id
   var project = $firebaseObject(itemRef); // gets the object from Firebase
-  
-  console.log(itemRef.child('targetCustomer1').child('targetCustomerDefinition').toString());
-  $firebaseObject(itemRef.child('targetCustomer1').child('targetCustomerDefinition')).$watch(function() {
-    console.log("Saved!"); // logs when the value of one property is changed and saved
+
+
+
+  $scope.targetCustomerDefinitionSaved = "Foo";
+  console.log($scope.targetCustomerDefinitionSaved);
+  $firebaseObject(itemRef.child('targetCustomer1/targetCustomerDefinition')).$watch(function() {
+    $scope.targetCustomerDefinitionSaved = "Saved";
+    console.log($scope.targetCustomerDefinitionSaved);
   })
 
   project.$bindTo($scope, "project").then(function() {
+
+    $("#input-id").rating(); // Initialize star-rating
+
+    $('#input-id').on('rating.change', function(event, value, caption) {
+        console.log(value);
+    });
 
     var evaluationScore = 0;
     var externalEvaluation = 0;
@@ -51,6 +61,12 @@ function($scope, $firebaseObject) {
     $scope.doTheyPay = function(doTheyPaydata){ // NEW
       console.log("Adding payment answer.");
       console.log(doTheyPaydata);
+
+
+      var star_rating_value = $("#input-id").val();
+      console.log(star_rating_value);
+      $scope.star_rating_value = star_rating_value;
+
       // console.log(doTheyPaydata);
       // console.log(doTheyPaydata.doTheyPayText);
       // console.log(doTheyPaydata.doTheyPayValue);

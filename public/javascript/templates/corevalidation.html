@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Valid Start {{ project.projectName}}</a>
+      <a class="navbar-brand" href="#">Valid Start: <strong>{{ project.projectName }}</strong></a>
     </div>
 
     <div class="collapse navbar-collapse">
@@ -18,82 +18,219 @@
         <li><a href="#">Team/Resources</a></li>
         <li><a href="#">Initial Plan</a></li>
       </ul>
-      <span class="navbar-text navbar-right">UserName: {{ project.creatorName }}</span>
+      <span class="navbar-text navbar-right">UserName: <strong>{{ project.creatorName }}</strong></span>
     </div>
   </div>
 </nav>
 
 <div class="container">
 
-  <div class="col-md-3">
+  <div class="col-md-2">
 
-    <div class="row pull-right">Target Customer:</div>
-    <div>&nbsp;</div>
-    <br />
-    <br />
+    <div class="panel panel-default pull-right left-col-panel">
+      <div class="panel-body pull-right active">
+        Target Customer:
+      </div>
+    </div>
 
-    <div class="row pull-right">Customer Problem/Need:</div>
-    <div>&nbsp;</div>
-    <br />
-    <br />
+    <div class="panel panel-default pull-right left-col-panel">
+      <div class="panel-body pull-right">
+        Customer Problem/Need:
+      </div>
+    </div>
 
-    <div class="row pull-right">Your Offering:</div>
-    <div>&nbsp;</div>
-    <br />
-    <br />
+    <div class="panel panel-default pull-right left-col-panel">
+      <div class="panel-body pull-right">
+        Your Offering:
+      </div>
+    </div>
 
-    <div class="row pull-right">Key Differentiators:</div>
+    <div class="panel panel-default pull-right left-col-panel">
+      <div class="panel-body pull-right">
+        Key Differentiators:
+      </div>
+    </div>
 
   </div> <!-- col-md-3 -->
 
-  <div class="col-md-6">
+  <div class="col-md-8">
 
     <div class="row"> <!-- row 1, "Add New +" -->
       <h1>
-        <button type="button" class="btn btn-primary">Add New&nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span></button>
-        <span class="text-center">Target Customer</span>
+        <div class="col-md-4">
+          <button type="button" class="btn btn-primary">Add New&nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+        <div class="col-md-8">
+          <span class="text-center">Target Customer</span>
+        </div>
       </h1>
+      <p>&nbsp;</p>
     </div> <!-- close row 1 -->
 
-    <div class="row"> <!-- row 2 "Defintion" -->
-      <div class="col-md-2">
-        <label for="targetCustomerDefinition">Definition: </label>
-      </div>
-      <div class="col-md-8">
+    <div class="panel panel-default">   <!-- Panel around panels -->
+      <div class="panel-body">
 
-        <form>
-          <div class="form-group">
-            <input type="text" class="textInputForm form-control" rows="2" name="targetCustomerDefinition" ng-model="project.targetCustomer1.targetCustomerDefinition" placeholder="Briefly..." ng-mouseleave="mouseleaveTargetCustomer = true"/> <!-- textarea doesn't work -->
-            <span class="glyphicon glyphicon-ok form-control-feedback" ng-show="saved" aria-hidden="true">&nbsp;&nbsp;</span>
+        <div class="panel panel-default">   <!-- Definition -->
+          <div class="panel-body form-group has-success has-feedback">
+            <label class="col-sm-2 control-label" for="targetCustomerDefinition">Definition:</label> <!-- green is from has-success -->
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="targetCustomerDefinition" ng-model="project.targetCustomer1.targetCustomerDefinition" placeholder="Briefly describe your customers’ qualities (e.g., spendthrift mobile gamer)" ng-mouseleave="mouseleaveTargetCustomer = true">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+            <div class="col-md-2">
+              {{targetCustomerDefinitionSaved}}
+            </div>
           </div>
-        </form>
+        </div>   <!-- close Definition -->
 
-      </div>
-      <div class="col-md-2">
-        <span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star"><span class="glyphicon glyphicon-star">
-      </div>
-    </div> <!-- close row 2 -->
+        <div class="panel panel-default" ng-show="mouseleaveTargetCustomer">   <!-- Do They Pay -->
+          <div class="panel-body form-group has-success has-feedback">
+            <label class="col-sm-2 control-label" for="doTheyPay">Do they pay:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="doTheyPay" ng-model="project.targetCustomer1.doTheyPayText" placeholder="Does this group pay for equivalent services or products?" ng-mouseleave="mouseleaveDoTheyPay = true">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+            <div class="col-md-2">
+              {{doTheyPaySaved}}
 
-
-
-    <div class="row"  ng-show="mouseleaveTargetCustomer">  <!-- row 3 "Do They Pay" -->
-      <div class="col-md-2">
-        <label for="doTheyPay">Do they pay: </label>
-      </div>
-      <div class="col-md-8">
-
-        <form>
-          <div class="form-group">
-            <input class="textInputForm" type="text" name="doTheyPay" ng-model="project.targetCustomer1.doTheyPayText" placeholder="Does this group pay for equivalent servcies or products?" ng-mouseleave="mouseleaveDoTheyPay = true"/>
-            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true">&nbsp;&nbsp;</span>
+              <input id="input-id" type="number" data-size="xs" showClear="false" showCaption="false" data-symbol="$">
+{{ star_rating_value }}
+            </div>
           </div>
-        </form>
+        </div>   <!-- close Do They Pay -->
+
+        <div class="panel panel-default" ng-show="mouseleaveDoTheyPay">   <!-- Pre-Adopters -->
+          <div class="panel-body form-group has-success has-feedback">
+            <label class="col-sm-2 control-label" for="preAdopters">Pre-Adopters:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="preAdopters" ng-model="project.targetCustomer1.preAdoptersText" placeholder="(B2C) Does this group have an early adopter group that you can work with?
+              (B2B) Do you know a customer to partner with in building your MVP?" ng-mouseleave="mouseleavePreAdopters = true">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+            <div class="col-md-2">
+              {{preAdoptersSaved}}
+            </div>
+          </div>
+        </div>   <!-- close Pre-Adopters -->
+
+        <div class="panel panel-default" ng-show="mouseleavePreAdopters">   <!-- Customer Base -->
+          <div class="panel-body form-group has-success has-feedback">
+            <label class="col-sm-2 control-label" for="customerBase">Customer Base:</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="customerBase" ng-model="project.targetCustomer1.customerBaseText" placeholder="Does this group have a large enough base to sell to?" ng-mouseleave="mouseleaveCustomerBase = true">
+              <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+            </div>
+            <div class="col-md-2">
+              {{customerBasedSaved}}
+            </div>
+          </div>
+        </div>   <!-- close Customer Base -->
+
+        <div class="panel panel-default" ng-show="mouseleaveCustomerBase">   <!-- Customer Base -->
+          <div class="panel-body">
+            <div class="col-sm-6">Customer Score: {{customerScore}}</div>
+            <div class="col-md-6 col-md-offset-8">
+              <button type="button" class="btn btn-primary">Use This Customer</button>
+
+            </div>
+          </div>
+        </div>   <!-- close Customer Base -->
 
       </div>
-      <div class="col-md-2">
+    </div> <!-- close panel around panels -->
+
+    <div class="panel panel-default">   <!-- Panel around Other Targets -->
+      <div class="panel-body">
+        <h3 class="row text-center">
+          Other Targets
+        </h3>
+        <div class="row">
+          <div class="col-md-1">
+            Score
+          </div>
+          <div class="col-md-5">
+            Description
+          </div>
+          <div class="col-md-2">
+            Do They Pay
+          </div>
+          <div class="col-md-2">
+            Pre-Adopters
+          </div>
+          <div class="col-md-2">
+            Customer Base
+          </div>
+        </div>
+
+        <div class="panel panel-default">   <!-- Panel around target customer -->
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-1">
+                7
+              </div>
+              <div class="col-md-5">
+                {{ project.targetCustomer1.targetCustomerDefinition }}
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-signal"></span>
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-signal"></span>
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-signal"></span>
+              </div>
+            </div>
+          </div>
+        </div> <!-- close panel around target customer -->
+
+        <div class="panel panel-default">   <!-- Panel around target customer -->
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-1">
+                7
+              </div>
+              <div class="col-md-5">
+                {{ project.targetCustomer1.targetCustomerDefinition }}
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-signal"></span>
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-signal"></span>
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-signal"></span>
+              </div>
+            </div>
+          </div>
+        </div> <!-- close panel around target customer -->
+
+        <div class="panel panel-default">   <!-- Panel around target customer -->
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-1">
+                7
+              </div>
+              <div class="col-md-5">
+                {{ project.targetCustomer1.targetCustomerDefinition }}
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-signal"></span>
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-signal"></span>
+              </div>
+              <div class="col-md-2">
+                <span class="glyphicon glyphicon-signal"></span>
+              </div>
+            </div>
+          </div>
+        </div> <!-- close panel around target customer -->
+
 
       </div>
-    </div> <!-- close row 3 -->
+    </div> <!-- close panel around Other Targets -->
 
     <!-- <div>
     <label for="isCustomer">Are you a target customer? </label><br />
@@ -149,26 +286,27 @@
 
 </div> <!-- col-md-6 -->
 
-<div class="col-md-3">
+<div class="col-md-2">
 
-  <div>
-    Your Evaluation Score<br />
-    {{ project.evaluationScore }}
+  <div class="panel panel-default right-col-panel">
+    <div class="panel-body">
+      Your Evaluation Score<br />
+      {{ project.evaluationScore }}
+    </div>
   </div>
 
-  <br />
-  <br />
-
-  <div>
-    External Evaluation<br />
-    {{ project.externalEvaluation }}
+  <div class="panel panel-default right-col-panel">
+    <div class="panel-body">
+      External Score<br />
+      {{ project.externalScore }}
+    </div>
   </div>
 
-  <br />
-  <br />
-
-  <div>
-    Create Report
+  <div class="panel panel-default right-col-panel">
+    <div class="panel-body">
+      <div>Create Report</div>
+      <div class="glyphicon glyphicon-level-up text-center"></div>
+    </div>
   </div>
 
 </div>

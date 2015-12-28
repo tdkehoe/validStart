@@ -1,6 +1,6 @@
-.textInputForm {
-  width: 100%
-}
+body {
+  background-color: whitesmoke;
+  }
 
 .glyphicon-ok {
   color: green;
@@ -8,4 +8,23 @@
 
 .glyphicon-star {
   color: gold;
+}
+
+.left-col-panel {
+width: 100%;
+color: silver
+}
+
+.right-col-panel {
+  color: darkblue;
+}
+
+.active {
+  color: black;
+}
+
+.glyphicon.glyphicon-level-up {
+    font-size: 75px;
+    margin: 0 auto;
+    text-align: center;
 }
