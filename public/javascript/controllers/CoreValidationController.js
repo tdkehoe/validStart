@@ -19,10 +19,11 @@ function($scope, $firebaseObject) {
 
   project.$bindTo($scope, "project").then(function() {
 
+    // Star-rating plug-in
     $("#input-id").rating(); // Initialize star-rating
-
     $('#input-id').on('rating.change', function(event, value, caption) {
-        console.log(value);
+      console.log(Number(value));
+      $scope.project.targetCustomer1.doTheyPayStarRatingValue = Number(value);
     });
 
     var evaluationScore = 0;
@@ -58,14 +59,9 @@ function($scope, $firebaseObject) {
       }
     }; // close defineTargetCustomer
 
-    $scope.doTheyPay = function(doTheyPaydata){ // NEW
-      console.log("Adding payment answer.");
-      console.log(doTheyPaydata);
-
-
-      var star_rating_value = $("#input-id").val();
-      console.log(star_rating_value);
-      $scope.star_rating_value = star_rating_value;
+    // $scope.doTheyPay = function(doTheyPaydata){ // NEW
+    //   console.log("Adding payment answer.");
+    //   console.log(doTheyPaydata);
 
       // console.log(doTheyPaydata);
       // console.log(doTheyPaydata.doTheyPayText);
@@ -75,7 +71,7 @@ function($scope, $firebaseObject) {
       //   doTheyPayValue: doTheyPay.doTheyPayValue,
       // };
       // $scope.project.targetCustomers.push(doTheyPay);
-    }; // close doTheyPay
+    // }; // close doTheyPay
 
     $scope.deleteTargetCustomer = function(project, targetCustomer) { // DESTROY
       var index = project.targetCustomers.indexOf(targetCustomer);

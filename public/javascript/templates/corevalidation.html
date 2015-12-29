@@ -92,9 +92,12 @@
             </div>
             <div class="col-md-2">
               {{doTheyPaySaved}}
+              <input id="input-id" type="number" data-size="xs" showClear="false" showCaption="false" data-symbol="$" ng-model="doTheyPayStarRatingValue">
 
-              <input id="input-id" type="number" data-size="xs" showClear="false" showCaption="false" data-symbol="$">
-{{ star_rating_value }}
+{{ project.targetCustomer1.doTheyPayStarRatingValue }}
+
+{{ doTheyPayStarRatingValue }}
+
             </div>
           </div>
         </div>   <!-- close Do They Pay -->
